@@ -60,7 +60,6 @@ public class UsuarioController {
 		return new ResponseEntity<Usuario>(usuarioRepository.save(usuario), HttpStatus.CREATED);
 	}
 	
-	
 	@RequestMapping("/default/")
 	@ResponseBody
 	String home() {
@@ -74,9 +73,9 @@ public class UsuarioController {
 		
 		Usuario usuario1 = new Usuario();
 		
-		usuario1.setNome("luiz");
-		usuario1.setLogin("luiz");
-		usuario1.setPassword("luiz");
+		usuario1.setNome("Manuel");
+		usuario1.setLogin("Manuel");
+		usuario1.setPassword("Manuel");
 		
 		usuario1 = usuarioRepository.save(usuario1);
 
