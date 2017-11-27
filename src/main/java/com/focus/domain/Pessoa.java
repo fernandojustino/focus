@@ -5,11 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.br.CNPJ;
-
 
 @Entity
 @Table(name="pessoa")
@@ -18,7 +18,9 @@ public class Pessoa {
 	private Long id;
 	private String nome;
 	private String cnpj;
+	private String tipoLogradouro;
 	private String logradouro;
+	private Cidade cidade;
 	private String telefone;
 	private String email;
 	
@@ -46,12 +48,29 @@ public class Pessoa {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	
+	@Column(name="tipoLogradouro")
+	public String getTipoLogradouro() {
+		return tipoLogradouro;
+	}
+	public void setTipoLogradouro(String tipoLogradouro) {
+		this.tipoLogradouro = tipoLogradouro;
+	}
 	@Column(name = "logradouro")
 	public String getLogradouro() {
 		return logradouro;
 	}
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="cidade_id")
+	public Cidade getCidade() {
+		return cidade;
+	}
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 	@Column(name = "telefone")
