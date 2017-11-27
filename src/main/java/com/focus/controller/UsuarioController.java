@@ -38,7 +38,7 @@ public class UsuarioController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-		
+	@GetMapping(path = "/")	
 	public ResponseEntity<List<Usuario>> listar() {
 		List<Usuario> usuarios = usuarioRepository.findAll();
 		
