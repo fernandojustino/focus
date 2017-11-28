@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,19 +40,10 @@ public class UsuarioController {
 	@GetMapping(path = "/")	
 	public ResponseEntity<List<Usuario>> listar() {
 		List<Usuario> usuarios = usuarioRepository.findAll();
-		
 		return new ResponseEntity<List<Usuario>>(new ArrayList<Usuario>(usuarios), HttpStatus.OK);
-	  }
-
-	@PostMapping(path = "/login/", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<?> verificarLogin(@RequestBody Usuario usuario)  {
-		HttpStatus status = HttpStatus.OK;
-		Usuario usr = usuarioRepository.findByLogin(usuario.getLogin(), usuario.getPassword()) ;
-		if (usr == null ) {
-			status = HttpStatus.FORBIDDEN;
-		} 
-		return new ResponseEntity<> (usr, status);
 	}
+
+	
 
 	@PostMapping(path = "/cadastrar/", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Usuario> cadastrar(@RequestBody Usuario usuario)  {
@@ -64,23 +54,26 @@ public class UsuarioController {
 	@ResponseBody
 	String home() {
 		Usuario usuario = new Usuario();
-		
-		usuario.setNome("fernando");
+		usuario.setNome("Fernando");
 		usuario.setLogin("fernando");
 		usuario.setPassword("fernando");
-		
 		usuario = usuarioRepository.save(usuario);
-		
 		Usuario usuario1 = new Usuario();
-		
-		usuario1.setNome("Manuel");
-		usuario1.setLogin("Manuel");
-		usuario1.setPassword("Manuel");
-		
+		usuario1.setNome("Bruno");
+		usuario1.setLogin("bruno");
+		usuario1.setPassword("bruno");
 		usuario1 = usuarioRepository.save(usuario1);
-
 		return "Grava Usuario !! codigo: " + usuario.getId();
 	}
 	
+	@PostMapping(path = "/login/", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<?> verificarLogin(@RequestBody Usuario usuario)  {
+		HttpStatus status = HttpStatus.OK;
+		Usuario usr = usuarioRepository.findByLogin(usuario.getLogin(), usuario.getPassword()) ;
+		if (usr == null ) {
+			status = HttpStatus.FORBIDDEN;
+		} 
+		return new ResponseEntity<> (usr, status);
+	}
 	
 }

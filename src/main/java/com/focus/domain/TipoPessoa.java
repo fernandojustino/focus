@@ -5,23 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tipocliente")
-public class TipoCliente {
+@Table(name="tipo_pessoa")
+public class TipoPessoa {
 	
-	private Long id;
+	private Integer id;
 	private String nome;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -48,7 +46,7 @@ public class TipoCliente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoCliente other = (TipoCliente) obj;
+		TipoPessoa other = (TipoPessoa) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

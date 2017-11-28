@@ -24,6 +24,7 @@ public class Pessoa {
 	private Cidade cidade;
 	private String telefone;
 	private String email;
+	private TipoPessoa tipoPessoa;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -74,6 +75,16 @@ public class Pessoa {
 		this.cidade = cidade;
 	}
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="tipoPessoa_id")
+	public TipoPessoa getTipoPessoa() {
+		return tipoPessoa;
+	}
+	
+	public void setTipoPessoa(TipoPessoa tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
+	}
+	
 	@Column(name = "telefone")
 	public String getTelefone() {
 		return telefone;
